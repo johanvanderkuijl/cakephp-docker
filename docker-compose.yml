@@ -1,0 +1,24 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    image: cakephp-docker
+    ports:
+      - 8080:80
+    volumes:
+      - .:/var/www/html
+    links:
+      - mysql
+    environment:
+      - DATABASE_URL=mysql://app:password@mysql/cakephp_docker?encoding=utf8&timezone=UTC&cacheMetadata=true
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 23306:3306
+    environment:
+      MYSQL_DATABASE: cakephp_docker
+      MYSQL_USER: app
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
