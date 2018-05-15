@@ -22,10 +22,7 @@ class ProductsController extends AppController
                 if ($product['checkbox'] == 1) {
                     debug($product, true);
                 }
-                
-                
             }
-            
        
             exit();
         }
