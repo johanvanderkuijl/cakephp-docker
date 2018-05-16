@@ -18,3 +18,5 @@ If you are stuck behind a corporate firewall with a proxy, you can use environme
 export http_proxy="10.0.0.1:8080"
 ```
 Since these variables are picked up in the docker-compose.yml file, your containers can access the internet.
+
+You also might want to read https://docs.docker.com/config/daemon/systemd/#httphttps-proxy if you use systemd.
