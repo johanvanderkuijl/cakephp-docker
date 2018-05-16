@@ -21,6 +21,10 @@ RUN apt-get update -q && apt-get install -qqy \
 # copy the source app
 COPY . /var/www/html 
 
+# run composer install
+WORKDIR /var/www/html
+RUN composer -n install
+
 # Add apache config to enable .htaccess and do some stuff you want
 COPY .docker/vhost.conf /etc/apache2/sites-available/000-default.conf
 
