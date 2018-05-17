@@ -15,7 +15,6 @@ RUN apt-get update -q && apt-get install -qqy \
 	php-xml \
 	php-codesniffer \
 	php-mysql && \
-	vim && \
 	# Delete all the apt list files since they're big and get stale quickly
 	rm -rf /var/lib/apt/lists/*
 
