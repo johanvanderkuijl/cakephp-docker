@@ -15,6 +15,7 @@ RUN apt-get update -q && apt-get install -qqy \
 	php-xml \
 	php-codesniffer \
 	php-mysql && \
+	vim && \
 	# Delete all the apt list files since they're big and get stale quickly
 	rm -rf /var/lib/apt/lists/*
 
@@ -23,7 +24,10 @@ COPY . /var/www/html
 
 # run composer install
 WORKDIR /var/www/html
-RUN composer -n install
+
+#better run this from your host, or the vendor lib is not preserved
+#RUN composer -n install
+#docker exec -it <your container> composer install
 
 # Add apache config to enable .htaccess and do some stuff you want
 COPY .docker/vhost.conf /etc/apache2/sites-available/000-default.conf
