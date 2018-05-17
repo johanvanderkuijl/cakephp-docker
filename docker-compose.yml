@@ -17,10 +17,20 @@ services:
       - mysql
     environment:
       - DATABASE_URL=mysql://app:password@mysql/cakephp_docker?encoding=utf8&timezone=UTC&cacheMetadata=true
+      - DATABASE_TEST_URL=mysql://app:password@mysql-test/cakephp_docker?encoding=utf8&timezone=UTC&cacheMetadata=true
   mysql:
     image: mysql:5.7
     ports:
       - 23306:3306
+    environment:
+      MYSQL_DATABASE: cakephp_docker
+      MYSQL_USER: app
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+  mysql-test:
+    image: mysql:5.7
+    ports:
+      - 23307:3306
     environment:
       MYSQL_DATABASE: cakephp_docker
       MYSQL_USER: app
