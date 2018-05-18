@@ -13,23 +13,6 @@ use App\Controller\AppController;
 class ProductsController extends AppController
 {
 
-    public function batch()
-    {
-        
-        if ($this->request->is('post')) {
-            $data = $this->request->getData();
-            foreach($data['Product'] as $product) {
-                if ($product['checkbox'] == 1) {
-                    debug($product, true);
-                }
-            }
-       
-            exit();
-        }
-        return $this->redirect(['action' => 'index']);
-         
-    }
-
     /**
      * Index method
      *

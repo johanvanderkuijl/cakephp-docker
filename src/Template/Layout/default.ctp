@@ -23,6 +23,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <title>
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
+        ik ben de default layout
     </title>
     <?= $this->Html->meta('icon') ?>
 
