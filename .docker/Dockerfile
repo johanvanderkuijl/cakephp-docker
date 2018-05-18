@@ -35,6 +35,7 @@ COPY .docker/vhost.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite && \
 	echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
+# fix group rights
 
 ####################################################
 # Expose port and run Apache webserver             #
