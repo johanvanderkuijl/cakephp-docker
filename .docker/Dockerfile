@@ -36,6 +36,9 @@ RUN a2enmod rewrite && \
 	echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # fix group rights
+RUN	chgrp -R www-data logs tmp && \
+	chmod -R g+rw logs tmp 
+
 
 ####################################################
 # Expose port and run Apache webserver             #
