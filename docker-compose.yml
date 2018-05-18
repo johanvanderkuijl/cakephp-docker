@@ -21,6 +21,9 @@ services:
       - DEBUG=true
       - APP_DEFAULT_LOCALE=nl_NL
       - APP_DEFAULT_TIMEZONE=Europe/Amsterdam
+      - http_proxy=${http_proxy}
+      - https_proxy=${http_proxy}
+      - no_proxy=${no_proxy}
   mysql:
     image: mysql:5.7
     ports:
