@@ -1,22 +1,20 @@
-FROM ubuntu:xenial
-MAINTAINER Stefan van Gastel <stefanvangastel@gmail.com>
+FROM php:7.2-apache-stretch
+MAINTAINER Johan van der Kuijl <jvdkuijl@gmail.com>
 
-# Install packages and PHP 7
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update -q && apt-get install -qqy \
-	git-core \
-	composer \ 
-	#Installing mod-php installs both recommended PHP 7 and Apache2
-	libapache2-mod-php \
-	php-mcrypt \
-	php-intl \
-	php-mbstring \
-	php-zip \
-	php-xml \
-	php-codesniffer \
-	php-mysql && \
-	# Delete all the apt list files since they're big and get stale quickly
-	rm -rf /var/lib/apt/lists/*
+RUN apt-get -y update \
+    && apt-get install -y \
+	libicu-dev \
+	vim \
+	zip \
+	unzip \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl \
+	&& docker-php-ext-configure mbstring \
+	&& docker-php-ext-install mbstring \
+	&& docker-php-ext-configure pdo_mysql \
+	&& docker-php-ext-install pdo_mysql \
+	&& curl -Ls https://getcomposer.org/composer.phar > /usr/local/bin/composer && chmod +x /usr/local/bin/composer \
+	&& rm -rf /var/lib/apt/lists/*
 
 # copy the source app
 COPY . /var/www/html 
